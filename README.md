@@ -2,6 +2,10 @@
 
 instead of stuffing the entire chat history into the prompt (which eats up the context window), this uses chromadb to store messages as vectors and retrieves only the relevant ones when needed.
 
+uses streamlit for a simple chat ui.
+
+![example](images/exampel.png)
+
 ## how it works
 
 1. user sends a message

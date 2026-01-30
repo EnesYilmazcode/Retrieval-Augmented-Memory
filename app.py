@@ -40,6 +40,12 @@ def get_relevant_context(query, k=5):
 # ui
 st.title("RAG Memory Chat")
 
+if st.button("Clear Memory"):
+    chroma_client.delete_collection("chat_memory")
+    chroma_client.get_or_create_collection("chat_memory")
+    st.session_state.messages = []
+    st.rerun()
+
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
