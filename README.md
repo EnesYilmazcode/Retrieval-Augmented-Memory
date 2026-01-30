@@ -1,9 +1,28 @@
 # Retrieval-Augmented-Memory
 
-RAG-based conversational memory using vector similarity search. Solves the problem of AI agents filling up context windows with full chat history.
+instead of stuffing the entire chat history into the prompt (which eats up the context window), this uses chromadb to store messages as vectors and retrieves only the relevant ones when needed.
 
-## Setup
+## how it works
 
-1. Install dependencies: `pip install -r requirements.txt`
-2. Create a `.env` file with your Google API key: `GOOGLE_API_KEY=your_key_here`
-3. Run: `python -m streamlit run app.py`
+1. user sends a message
+2. we search chromadb for semantically similar past messages
+3. only those relevant messages get sent to the llm as context
+4. response gets saved back to chromadb for future retrieval
+
+## setup
+
+```
+pip install -r requirements.txt
+```
+
+create a `.env` file:
+```
+GOOGLE_API_KEY=your_key_here
+```
+
+run it:
+```
+python -m streamlit run app.py
+```
+
+first run will download the embedding model (~80mb), after that its cached.
